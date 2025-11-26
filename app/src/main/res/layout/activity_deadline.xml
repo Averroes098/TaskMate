@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8FAFC"
+    android:padding="16dp">
+
+    <!-- Header App Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center_vertical"
+        android:elevation="2dp">
+
+        <!-- Tombol Kembali -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Kembali"
+            app:tint="#1E293B" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Daftar Tugas Yang Ada"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#1E293B"
+            android:gravity="center" />
+
+        <!-- Spacer untuk balance layout -->
+        <View
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+
+    </LinearLayout>
+
+    <!-- Content Area dengan Scroll -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Reminder Tenggat Waktu -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reminder Tenggat Waktu"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1E293B"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Card Reminder (akan diupdate secara dinamis) -->
+            <LinearLayout
+                android:id="@+id/reminderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="24dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/reminderTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Judul Tugas"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E293B"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/reminderDeadline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tenggat: "
+                    android:textSize="12sp"
+                    android:textColor="#64748B"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/reminderMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pesan reminder"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Section Tugas Belum Selesai -->
+            <TextView
+                android:id="@+id/sectionUncompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tugas Belum Selesai"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1E293B"
+                android:layout_marginBottom="12dp" />
+
+            <!-- RecyclerView Tugas Belum Selesai -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerUncompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:minHeight="50dp"
+                android:elevation="1dp" />
+
+            <!-- Section Tugas Selesai -->
+            <TextView
+                android:id="@+id/sectionCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tugas Selesai"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1E293B"
+                android:layout_marginBottom="12dp" />
+
+            <!-- RecyclerView Tugas Selesai -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:minHeight="50dp"
+                android:elevation="1dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:elevation="4dp">
+
+        <!-- Kelola Tugas Menu -->
+        <LinearLayout
+            android:id="@+id/menuKelolaTugas"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/textKelolaTugas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kelola Tugas"
+                android:textSize="12sp"
+                android:textColor="#64748B" />
+
+            <View
+                android:id="@+id/indicatorKelolaTugas"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:background="#3B82F6"
+                android:layout_marginTop="4dp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <!-- Daftar Tugas Menu -->
+        <LinearLayout
+            android:id="@+id/menuDaftarTugas"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/textDaftarTugas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daftar Tugas"
+                android:textSize="12sp"
+                android:textColor="#3B82F6"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/indicatorDaftarTugas"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:background="#3B82F6"
+                android:layout_marginTop="4dp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

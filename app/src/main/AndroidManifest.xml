@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Izin yang diperlukan -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <application
+        android:allowBackup="true"
+        android:label="TaskMate"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TaskMate"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".TaskListActivity" android:exported="false" />
+        <activity android:name=".AddTaskActivity" android:exported="false" />
+        <activity android:name=".EditTaskActivity" android:exported="false" />
+        <activity android:name=".DetailTaskActivity" android:exported="false" />
+        <activity android:name=".DeadlineActivity" android:exported="false" />
+
+        <!--
+         BootReceiver dinonaktifkan untuk menghindari duplikasi.
+         DeadlineReceiver sudah menangani aksi BOOT_COMPLETED.
+        -->
+        <receiver
+            android:name=".BootReceiver"
+            android:enabled="false"
+            android:exported="false"
+            tools:ignore="DuplicateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Receiver utama untuk menangani semua notifikasi dan alarm -->
+        <receiver
+            android:name=".DeadlineReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

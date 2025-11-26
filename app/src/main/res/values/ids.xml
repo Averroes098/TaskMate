@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textTitle" type="id" />
+    <item name="btnComplete" type="id" />
+    <item name="textDate" type="id" />
+    <item name="textDescription" type="id" />
+</resources>
